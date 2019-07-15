@@ -1,8 +1,7 @@
 class Api::V1::NotificationsController < ApplicationController
     def create
         notification = Notification.new(notification_params)
-        puts notification_params
-        if notification_params.save
+        if notification.save
             render json: notification
         else
             render json:{errors: notification.errors.full_messages},status: :error
