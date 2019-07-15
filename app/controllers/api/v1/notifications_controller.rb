@@ -1,4 +1,8 @@
 class Api::V1::NotificationsController < ApplicationController
+    def index
+        notification = Notification.all
+        render json: notification
+    end
     def create
         notification = Notification.new(notification_params)
         if notification.save

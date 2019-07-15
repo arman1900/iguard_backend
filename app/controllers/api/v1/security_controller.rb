@@ -10,7 +10,7 @@ class Api::V1::SecurityController < ApplicationController
     end
     def index
         security = Security.all
-        render json: user, only: [:company_name,:email,:phone_number,:link,:extra_info,:location,:telegram]
+        render json: security
     end
     private
     def security_params
