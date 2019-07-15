@@ -10,13 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_150605) do
+ActiveRecord::Schema.define(version: 2019_07_15_115923) do
+
+  create_table "camera_settings", force: :cascade do |t|
+    t.string "status"
+    t.string "on_time"
+    t.string "on_day"
+    t.string "off_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "developers", force: :cascade do |t|
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["token"], name: "index_developers_on_token", unique: true
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "extra_data"
+    t.integer "frame_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "securities", force: :cascade do |t|
