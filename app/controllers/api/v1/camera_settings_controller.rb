@@ -1,6 +1,6 @@
 class Api::V1::CameraSettingsController < ApplicationController
     def change_status
-        cam = Camera_setting.find(params[:id])
+        cam = CameraSetting.find(params[:id])
         if cam.status == "On"
             cam.status ="Off"
         else
@@ -8,7 +8,7 @@ class Api::V1::CameraSettingsController < ApplicationController
         end
     end
     def set_time
-        cam = Camera_setting.find(params[:id])
+        cam = CameraSetting.find(params[:id])
         if params[:on_time]
         cam.on_time = (params[:on_time])
         end
