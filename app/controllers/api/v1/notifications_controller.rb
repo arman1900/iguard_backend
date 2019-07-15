@@ -6,6 +6,7 @@ class Api::V1::NotificationsController < ApplicationController
             render json: notification
         else
             render json:{errors: notification.errors.full_messages},status: :error
+        end
     end
     private
     def notification_params
