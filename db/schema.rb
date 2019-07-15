@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_121910) do
+ActiveRecord::Schema.define(version: 2019_07_15_132407) do
 
-# Could not dump table "camera_settings" because of following StandardError
-#   Unknown type 'type' for column 'status'
+  create_table "camera_settings", force: :cascade do |t|
+    t.string "status", default: "Off"
+    t.string "on_time"
+    t.string "on_day"
+    t.string "off_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "developers", force: :cascade do |t|
     t.string "token"
