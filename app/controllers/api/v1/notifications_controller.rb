@@ -6,6 +6,7 @@ class Api::V1::NotificationsController < ApplicationController
     def show 
         notification = Notification.find(params[:id])
         render json:  notification
+    end
     def create
         notification = Notification.new(notification_params)
         if notification.save
