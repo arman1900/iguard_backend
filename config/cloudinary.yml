@@ -1,0 +1,6 @@
+production:
+  cloud_name: "ho4h8kbad"
+  api_key: "568954453116722"
+  api_secret: "sYqPzOWzqWen23MhjUgjRzeVbDs"
+  secure: true
+  cdn_subdomain: true
