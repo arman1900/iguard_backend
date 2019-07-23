@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_132407) do
+ActiveRecord::Schema.define(version: 2019_07_23_030722) do
 
   create_table "camera_settings", force: :cascade do |t|
-    t.string "status", default: "Off" 
+    t.string "status", default: "Off"
     t.string "on_time"
     t.string "on_day"
     t.string "off_time"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2019_07_15_132407) do
     t.integer "frame_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "camera_id"
+    t.string "picture"
   end
 
   create_table "securities", force: :cascade do |t|

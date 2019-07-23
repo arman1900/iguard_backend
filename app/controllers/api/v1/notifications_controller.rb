@@ -13,6 +13,6 @@ class Api::V1::NotificationsController < ApplicationController
     end
     private
     def notification_params
-        params.permit(:camera_id,:frame)
+        params.permit(:camera_id,:picture_cache,:picture)
     end
 end
