@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get "/:token/change_status", to:"camera_settings#change_status"
       post "/:token/set_time", to:"camera_settings#set_time"
       get "/:token/notifications", to: "notifications#index"
+      post "/:token/notification", to: "notifications#show"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

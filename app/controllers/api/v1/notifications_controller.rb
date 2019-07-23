@@ -3,6 +3,9 @@ class Api::V1::NotificationsController < ApplicationController
         notification = Notification.all
         render json: notification
     end
+    def show 
+        notification = Notification.find(params[:id])
+        render json:  notification
     def create
         notification = Notification.new(notification_params)
         if notification.save
@@ -13,6 +16,6 @@ class Api::V1::NotificationsController < ApplicationController
     end
     private
     def notification_params
-        params.permit(:camera_id,:picture_cache,:picture)
+        params.permit(:camera_id,:picture)
     end
 end
