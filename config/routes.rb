@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   namespace :api do
     namespace :v1 do
-      mount ActionCable.server => '/:token/cable'
       post "/:token/register/user", to: "user#create"
       post "/:token/login", to: "session#create"
       get "/:token/current-user", to:"session#show"
