@@ -14,7 +14,6 @@ class Api::V1::NotificationsController < ApplicationController
             notification: notification.camera_id,
             picture: notification.picture,
             time: notification.created_at
-            head :ok
             render json: notification
         else
             render json:{errors: notification.errors.full_messages},status: :error
