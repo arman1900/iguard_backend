@@ -9,6 +9,7 @@ class Api::V1::NotificationsController < ApplicationController
     end
     def create
         notification = Notification.new(notification_params)
+        notification.user_id = 1
         if notification.save
             ActionCable.server.broadcast 'notifications',
             notification: notification.camera_id,
