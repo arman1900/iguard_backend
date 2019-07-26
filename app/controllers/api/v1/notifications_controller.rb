@@ -12,7 +12,8 @@ class Api::V1::NotificationsController < ApplicationController
         if notification.save
             ActionCable.server.broadcast 'notifications',
             notification: notification.camera_id,
-            picture: notification.picture
+            picture: notification.picture,
+            time: notification.created_at
             head :ok
             render json: notification
         else
