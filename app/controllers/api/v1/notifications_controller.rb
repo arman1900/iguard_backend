@@ -11,10 +11,8 @@ class Api::V1::NotificationsController < ApplicationController
         notification = Notification.new(notification_params)
         if notification.save
             ActionCable.server.broadcast 'notifications',
-            notification: notification.camera_id,
-            picture: notification.picture,
-            time: notification.created_at
-            render json: notification
+                notification: notification.picture
+            head :ok
         else
             render json:{errors: notification.errors.full_messages},status: :error
         end
