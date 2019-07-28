@@ -3,10 +3,10 @@ class Api::V1::CameraSettingsController < ApplicationController
         cam = CameraSetting.find_by_user_id(params[:user_id])
         if cam.user_id == current_user.id
             if cam.status == "On" 
-                cam.status = "Off"
+                cam.write_attribute(:status, "Off")
                 render json: {success: "Successfully turned off camera"}
             else
-                cam.status = "On"
+                cam.write_attribute(:status, "On")
                 render json: {success: "Successfully turned on camera"}
             end
         else
