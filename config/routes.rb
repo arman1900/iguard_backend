@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get "/:token/current-user", to:"session#show"
       delete "/:token/logout/user", to: "session#destroy"
       post "/:token/notifications", to: "notifications#create"
-      get "/:token/change_status", to:"camera_settings#change_status"
+      post "/:token/change_status", to:"camera_settings#change_status"
       post "/:token/set_time", to:"camera_settings#set_time"
       post "/:token/camera", to:"camera_settings#show"
       get "/:token/notifications", to: "notifications#index"
