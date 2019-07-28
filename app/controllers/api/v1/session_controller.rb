@@ -17,7 +17,7 @@ class Api::V1::SessionController < ApplicationController
                     else
                         forget user
                     end
-                    render json: user, only: [:name,:surname,:id] 
+                    render json: user
                 #else
                    # render json: {errors: "Account not activated"}, status: :error
                 #end
