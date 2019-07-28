@@ -2,6 +2,7 @@ class User < ApplicationRecord
   #  before_create :confirmation_token
     has_many :security
     has_many :notifications
+    has_many :camera_settings
     has_secure_password
     attr_accessor :remember_token
     validates_presence_of :name, :surname, :email, :house, :street, :city,:login

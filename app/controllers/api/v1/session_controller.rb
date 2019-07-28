@@ -11,7 +11,7 @@ class Api::V1::SessionController < ApplicationController
             end
             if user && user.authenticate(session_params[:password])
                 #if user.email_confirmed
-                    sign_in user
+                    sign_in user    
                     if params[:remember_me] == '1' 
                         remember user
                     else
