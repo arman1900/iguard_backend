@@ -5,8 +5,8 @@ class Api::V1::UserController < ApplicationController
     end
     def create
         user = User.new(user_params)
-        cam = CameraSetting.new  
         if user.save
+            cam = CameraSetting.new  
             cam.user_id = user.id 
             cam.save
             render json: user
