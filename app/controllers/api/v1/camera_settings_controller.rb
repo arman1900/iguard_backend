@@ -4,10 +4,10 @@ class Api::V1::CameraSettingsController < ApplicationController
         if cam.user_id == current_user.id
             if cam.status == "On" 
                 cam.update_attribute(:status, "Off")
-                render json: {success: "Successfully turned off camera"}
+                render json: cam, only: [:id,:status]
             else
                 cam.update_attribute(:status, "On")
-                render json: {success: "Successfully turned on camera"}
+                render json: cam, only: [:id,:status]
             end
         else
             render json: {errors: "You don't have an access"}, status: :error
