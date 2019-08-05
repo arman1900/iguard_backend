@@ -32,7 +32,7 @@ class Api::V1::SessionController < ApplicationController
     end 
     def show
         if current_user
-            render json: current_user, only: [:id, :name, :surname, :phone_number]
+            render json: current_user
         else
             render json: {errors: "Not Signed In"}, status: :error
         end

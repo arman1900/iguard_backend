@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       post "/:token/camera", to:"camera_settings#show"
       get "/:token/notifications", to: "notifications#index"
       post "/:token/notification", to: "notifications#show"
+      post "/:token/security", to:"security#create"
+      get "/:token/securities", to:"security#index"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
