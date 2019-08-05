@@ -4,7 +4,7 @@ class Api::V1::NotificationsController < ApplicationController
         render json: notification
     end
     def show 
-        notification = Notification.find(params[:camera_id])
+        notification = Notification.where(camera_id: params[:camera_id])
         render json:  notification
     end
     def create
