@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post "/:token/register/user", to: "user#create"
+      get "/:token/users", to: "user#index"
       post "/:token/login", to: "session#create"
       get "/:token/current-user", to:"session#show"
       delete "/:token/logout/user", to: "session#destroy"
