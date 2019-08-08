@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       post "/:token/register/user", to: "user#create"
       get "/:token/users", to: "user#index"
+      patch "/:token/user/:id", to: "user#update"
+      delete "/:token/user/:id", to: "user#delete"
+      delete "/:token/camera/:id", to: "camera_settings#delete"
+      post "/:token/register/camera", to: "camera_settings#create"
       post "/:token/login", to: "session#create"
       get "/:token/current-user", to:"session#show"
       delete "/:token/logout/user", to: "session#destroy"

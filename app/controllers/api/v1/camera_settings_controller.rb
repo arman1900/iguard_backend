@@ -1,4 +1,25 @@
 class Api::V1::CameraSettingsController < ApplicationController
+    def create
+        cam = CameraSetting.new(camera_params)
+        if cam.save
+            render json: cam
+        else
+            render json:{errors: cam.errors.full_messages},status: :error
+        end
+    end
+    def delete
+        begin
+            cam = CameraSetting.find(params[:id])
+        rescue
+            render json: {errors: "Camera does not exist"}, status: :error
+        ensure
+            if cam.destroy!
+                render json: {success: "Deleted Successfully"}
+            else
+                render json: {errors: cam.errors.full_messages}, status: :error
+            end
+        end
+    end
     def change_status
         cam = CameraSetting.find_by_user_id(params[:user_id])
         if cam.user_id == current_user.id
@@ -25,5 +46,9 @@ class Api::V1::CameraSettingsController < ApplicationController
     def show 
         cam = CameraSetting.find_by_user_id(params[:user_id])
         render json: cam
+    end
+    private
+    def camera_params
+        params.permit(:user_id)
     end
 end
