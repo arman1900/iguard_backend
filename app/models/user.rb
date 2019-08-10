@@ -12,6 +12,13 @@ class User < ApplicationRecord
     validates :password, format: { with: /\A[0-9a-zA-Z_.\-]+\Z/, message: "Only alphanumeric characters, and -_."}
     validates_email_format_of :email, message: 'The email format is not correct!'
     before_create {self.email = email.downcase}
+    def update_with_password(params, *options)
+        if encrypted_password.blank?
+          update_attributes(params, *options)
+        else
+          super
+        end
+      end
     class << self
         def digest(string)
             cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

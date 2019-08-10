@@ -24,6 +24,7 @@ class Api::V1::UserController < ApplicationController
         rescue
             render json: {errors: "User does not exist"}, status: :error
         ensure
+            params[:user].delete(:password) if params[:user][:password].blank?
             if user.update_attributes(update_params)
                 render json: user
             else
