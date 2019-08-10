@@ -28,7 +28,8 @@ class Api::V1::SessionController < ApplicationController
     end
     def destroy
         if current_user = params[:id]
-        render json: {success: "Successfully signed out"}
+            sign_out
+            render json: {success: "Successfully signed out"}
         else
         render json: {errors: "Not Signed In"}, status: :error   
         end 
