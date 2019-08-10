@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       post "/:token/register/camera", to: "camera_settings#create"
       post "/:token/login", to: "session#create"
       get "/:token/current-user", to:"session#show"
-      delete "/:token/logout/user", to: "session#destroy"
+      delete "/:token/logout/user/:id", to: "session#destroy"
       post "/:token/notifications", to: "notifications#create"
       post "/:token/change_status", to:"camera_settings#change_status"
       post "/:token/set_time", to:"camera_settings#set_time"
