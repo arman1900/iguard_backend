@@ -30,7 +30,8 @@ class Api::V1::SessionController < ApplicationController
         if current_user = params[:id]
         render json: {success: "Successfully signed out"}
         else
-        render json: {errors: "Not Signed In"}, status: :error    
+        render json: {errors: "Not Signed In"}, status: :error   
+        end 
     end 
     def show
         if current_user
