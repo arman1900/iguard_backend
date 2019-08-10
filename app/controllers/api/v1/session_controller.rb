@@ -1,8 +1,5 @@
 class Api::V1::SessionController < ApplicationController
     def create
-        if signed_in?
-            render json: {errors: "Sign out from account first!!!"}, status: :error
-        else
             login = session_params[:username]
             if login.to_s.include? "@"
                 user = User.find_by_email(login)
@@ -24,7 +21,6 @@ class Api::V1::SessionController < ApplicationController
             else
                 render json: {errors: "Invalid username, email or password"}, status: :error
             end
-        end
     end
     def destroy
         if current_user = params[:id]
