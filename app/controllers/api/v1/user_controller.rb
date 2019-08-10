@@ -24,7 +24,7 @@ class Api::V1::UserController < ApplicationController
         rescue
             render json: {errors: "User does not exist"}, status: :error
         ensure
-            if user.update_without_password(update_params)
+            if user.update_attributes(update_params)
                 render json: user
             else
                 render json: {errors: user.errors.full_messages}, status: :error
