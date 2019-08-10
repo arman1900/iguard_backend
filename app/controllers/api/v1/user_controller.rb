@@ -24,7 +24,7 @@ class Api::V1::UserController < ApplicationController
         rescue
             render json: {errors: "User does not exist"}, status: :error
         ensure
-            if user.update_attributes(user_params)
+            if user.update_attributes(update_params)
                 render json: user
             else
                 render json: {errors: user.errors.full_messages}, status: :error
@@ -45,6 +45,9 @@ class Api::V1::UserController < ApplicationController
     private
     def user_params
         params.permit(:login,:email,:name,:surname,:second_name,:password,:password_confirmation,:iin,:telegram,:city,:street,:house,:apartment,:phone_number)
+    end
+    def update_params
+        params.permit(:email,:name,:surname,:second_name,:iin,:telegram,:city,:street,:house,:apartment,:phone_number)
     end
     def correct_user
         unless signed_in?
