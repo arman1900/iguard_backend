@@ -50,13 +50,10 @@ class Api::V1::UserController < ApplicationController
         params.permit(:email,:name,:surname,:second_name,:iin,:telegram,:city,:street,:house,:apartment,:phone_number)
     end
     def correct_user
-        unless signed_in?
-            render json: {errors: "Sign in first!"}, status: :error
-        else
+        if current_user = params[:id]
             @user = User.find(params[:id])
-            unless current_user?(@user.id)
-                render json: {errors: "You are not allowed to edit others"}, status: :error
-            end
+        else
+            render json: {errors: "You are not allowed to edit others"}, status: :error
         end
     end
 end
