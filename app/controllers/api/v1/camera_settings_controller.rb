@@ -25,7 +25,7 @@ class Api::V1::CameraSettingsController < ApplicationController
         end
     end
     def change_status
-        cam = CameraSetting.find_by_user_id(params[:user_id])
+        cam = CameraSetting.find(params[:id])
         if cam.user_id == current_user.id
             if cam.status == "On" 
                 cam.update_attribute(:status, "Off")
@@ -39,13 +39,14 @@ class Api::V1::CameraSettingsController < ApplicationController
         end
     end
     def set_time
-        cam = CameraSetting.find_by_user_id(params[:user_id])
+        cam = CameraSetting.find(params[:id])
         if params[:on_time]
-        cam.on_time = params[:on_time]
+            cam.update_attribute(:on_time, params[:on_time])
         end
         if params[:off_time]
-        cam.off_time = params[:off_time]
+            cam.update_attribute(:off_time, params[:off_time])
         end
+            render json: cam
     end
     def show 
         cam = CameraSetting.find_by_user_id(params[:user_id])
