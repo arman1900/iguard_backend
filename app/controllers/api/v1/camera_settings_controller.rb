@@ -49,8 +49,32 @@ class Api::V1::CameraSettingsController < ApplicationController
             render json: cam    
     end
     def show 
-        cam = CameraSetting.find_by_user_id(params[:user_id])
+        cam = CameraSetting.find(params[:id])
         render json: cam
+    end
+    def user_cameras
+        cam = CameraSetting.where(user_id: params[:user_id])
+        render json: cam
+    end
+    def change_iguard_status
+        if status_state = 1 
+            CameraSetting.where(user_id: params[:user_id]).all.each do |cam|
+                cam.status = "Off"
+                cam.save
+            end
+        else
+            CameraSetting.where(user_id: params[:user_id]).all.each do |cam|
+                cam.status = "On"
+                cam.save
+            end
+        end
+    end
+    def status
+        if status_state = 1
+            render json: "iguard working"
+        else
+            render json: "iguard not working "
+        end
     end
     private
     def camera_params
