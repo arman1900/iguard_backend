@@ -1,4 +1,8 @@
 class Api::V1::CameraSettingsController < ApplicationController
+    def index 
+        cam = CameraSetting.all 
+        render json: cam
+    end
     def create
         cam = CameraSetting.new(camera_params)
         if cam.save
@@ -37,10 +41,10 @@ class Api::V1::CameraSettingsController < ApplicationController
     def set_time
         cam = CameraSetting.find_by_user_id(params[:user_id])
         if params[:on_time]
-        cam.on_time = (params[:on_time])
+        cam.on_time = params[:on_time]
         end
         if params[:off_time]
-        cam.off_time = (params[:off_time])
+        cam.off_time = params[:off_time]
         end
     end
     def show 

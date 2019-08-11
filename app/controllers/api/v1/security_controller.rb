@@ -3,7 +3,7 @@ class Api::V1::SecurityController < ApplicationController
         security = Security.new(security_params)
         puts security_params
         if security.save
-            render json: user, only: [:company_name,:email,:phone_number,:link,:extra_info,:location,:telegram]
+            render json: security
         else
             render json:{errors: security.errors.full_messages},status: :error
         end
