@@ -70,11 +70,9 @@ class Api::V1::CameraSettingsController < ApplicationController
         end
     end
     def status
-        if status_state = 1
-            render json: "iguard working"
-        else
-            render json: "iguard not working "
-        end
+            s = status_state
+            render json: s
+        
     end
     private
     def camera_params
