@@ -1,5 +1,4 @@
 class Api::V1::UserController < ApplicationController
-    before_action :correct_user, only: [:update,:delete]
     def index
         user = User.all
         render json: user

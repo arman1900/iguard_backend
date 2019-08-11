@@ -46,7 +46,7 @@ class Api::V1::CameraSettingsController < ApplicationController
         if params[:off_time]
             cam.update_attribute(:off_time, params[:off_time])
         end
-            render json: cam
+            render json: cam    
     end
     def show 
         cam = CameraSetting.find_by_user_id(params[:user_id])
