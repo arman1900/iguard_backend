@@ -26,7 +26,6 @@ class Api::V1::CameraSettingsController < ApplicationController
     end
     def change_status
         cam = CameraSetting.find(params[:id])
-        if cam.user_id == current_user.id
             if cam.status == "On" 
                 cam.update_attribute(:status, "Off")
                 render json: cam, only: [:id,:status]
@@ -34,19 +33,17 @@ class Api::V1::CameraSettingsController < ApplicationController
                 cam.update_attribute(:status, "On")
                 render json: cam, only: [:id,:status]
             end
-        else
-            render json: {errors: "You don't have an access"}, status: :error
-        end
     end
     def set_time
-        cam = CameraSetting.find(params[:id])
-        if params[:on_time]
-            cam.update_attribute(:on_time, params[:on_time])
-        end
-        if params[:off_time]
-            cam.update_attribute(:off_time, params[:off_time])
-        end
+        CameraSetting.where(params[:user_id]).all.each do |cam|
+            if params[:on_time]
+                cam.update_attribute(:on_time, params[:on_time])
+            end
+            if params[:off_time]
+                cam.update_attribute(:off_time, params[:off_time])
+            end
             render json: cam    
+        end
     end
     def show 
         cam = CameraSetting.find(params[:id])
