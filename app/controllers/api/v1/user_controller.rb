@@ -9,7 +9,6 @@ class Api::V1::UserController < ApplicationController
         rescue
             render json: {errors: "User does not exist"}, status: :error
         ensure
-            sign_out
             if user.destroy!
                 render json: {success: "Deleted Successfully"}
             else
