@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       post "/:token/user/cameras", to:"camera_settings#user_cameras"
       post "/:token/status", to:"camera_settings#status"
       post "/:token/change_iguard_status", to:"camera_settings#change_iguard_status"
+      get "/:token/user_notifications/:user_id", to:"notifications#show_user_cameras"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
