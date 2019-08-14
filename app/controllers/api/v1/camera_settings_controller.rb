@@ -37,10 +37,10 @@ class Api::V1::CameraSettingsController < ApplicationController
     def set_time
         CameraSetting.where(params[:user_id]).all.each do |cam|
             if params[:on_time]
-                cam.update_attribute(:on_time, params[:on_time])
+                cam.on_time = params[:on_time]
             end
             if params[:off_time]
-                cam.update_attribute(:off_time, params[:off_time])
+                cam.off_time = params[:off_time]
             end
             cam.save  
         end
