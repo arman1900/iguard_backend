@@ -44,7 +44,7 @@ class Api::V1::CameraSettingsController < ApplicationController
             end
             cam.save  
         end
-        cam = CameraSetting.where(params[:user_id])
+        cam = CameraSetting.where(user_id: params[:user_id])
         render json: cam
     end
     def show 
