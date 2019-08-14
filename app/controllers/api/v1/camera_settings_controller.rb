@@ -35,7 +35,7 @@ class Api::V1::CameraSettingsController < ApplicationController
             end
     end
     def set_time
-        CameraSetting.where(params[:user_id]).all.each do |cam|
+        CameraSetting.where(user_id: params[:user_id]).all.each do |cam|
             if params[:on_time]
                 cam.on_time = params[:on_time]
             end
