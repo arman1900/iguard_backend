@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_140225) do
+ActiveRecord::Schema.define(version: 2019_08_12_122721) do
 
   create_table "camera_settings", force: :cascade do |t|
     t.string "status", default: "Off"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2019_07_28_140225) do
     t.string "phone_number"
     t.string "password_digest"
     t.string "remember_digest"
+    t.boolean "is_admin"
     t.index ["email"], name: "index_users_on_email"
     t.index ["login"], name: "index_users_on_login"
     t.index ["phone_number"], name: "index_users_on_phone_number"

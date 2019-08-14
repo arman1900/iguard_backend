@@ -1,4 +1,5 @@
 class Api::V1::UserController < ApplicationController
+    before_action :is_admin, only: [:delete]
     def index
         user = User.all
         render json: user
@@ -42,7 +43,7 @@ class Api::V1::UserController < ApplicationController
     end
     private
     def user_params
-        params.permit(:login,:email,:name,:surname,:second_name,:password,:password_confirmation,:iin,:telegram,:city,:street,:house,:apartment,:phone_number)
+        params.permit(:login,:email,:name,:surname,:second_name,:password,:password_confirmation,:iin,:telegram,:city,:street,:house,:apartment,:phone_number,:is_admin)
     end
     def update_params
         params.permit(:email,:name,:surname,:second_name,:iin,:telegram,:city,:street,:house,:apartment,:phone_number)
@@ -52,6 +53,15 @@ class Api::V1::UserController < ApplicationController
             @user = User.find(params[:id])
         else
             render json: {errors: "You are not allowed to edit others"}, status: :error
+        end
+    end
+    def is_admin
+        if signed_in?
+            if(current_user.is_admin == 0)
+                render json: {errors: "You don't have an access"}, status: :error
+            end
+        else
+            render json: {errors: "You don't have an access"}, status: :error
         end
     end
 end
