@@ -57,7 +57,7 @@ class Api::V1::UserController < ApplicationController
     end
     def is_admin
         if signed_in?
-            if(current_user.is_admin == false)
+            if(current_user.is_admin == true)
                 render json: {errors: "You don't have an access"}, status: :error
             end
         else
