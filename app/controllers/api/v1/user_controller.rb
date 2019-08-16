@@ -30,6 +30,19 @@ class Api::V1::UserController < ApplicationController
             end
         end
     end
+    def update_password
+        begin
+            user = User.find(params[:id])
+        rescue
+            render json: {errors: "User does not exist"}, status: :error
+        ensure
+            if user.update_with_password(password_params)
+                render json: user
+            else
+                render json: {errors: user.errors.full_messages}, status: :error
+            end
+        end
+    end
     def create
         user = User.new(user_params)
         if user.save
@@ -47,6 +60,9 @@ class Api::V1::UserController < ApplicationController
     end
     def update_params
         params.permit(:email,:name,:surname,:second_name,:iin,:telegram,:city,:street,:house,:apartment,:phone_number)
+    end
+    def password_params
+        params.permint(:password,:password_confirmation)
     end
     def correct_user
         if current_user = params[:id]

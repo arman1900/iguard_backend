@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   #  before_create :confirmation_token
+    cattr_reader :current_password
     has_many :security
     has_many :notifications
     has_many :camera_settings
@@ -11,13 +12,16 @@ class User < ApplicationRecord
     validates :password, length:{minimum: 6, maximum: 30},format: { with: /\A[0-9a-zA-Z_.\-]+\Z/, message: "Only alphanumeric characters, and -_."},on: :create
     validates_email_format_of :email, message: 'The email format is not correct!'
     before_create {self.email = email.downcase}
-    def update_with_password(params, *options)
-        if encrypted_password.blank?
-          update_attributes(params, *options)
+    def update_with_password(password_params)
+        current_password = password_params.delete(:current_password)
+        if self.authenticate(current_password)
+          self.update(password_params)
+          true
         else
-          super
+          self.errors.add(:current_password, current_password.blank? ? :blank : :invalid)
+          false
         end
-      end
+    end
     class << self
         def digest(string)
             cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
