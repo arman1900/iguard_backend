@@ -15,7 +15,7 @@ class Api::V1::NotificationsController < ApplicationController
             @notification = Notification.where(camera_id: @id)
             content << @notification
         end
-        render json: {:data=> @content, :status=> 200}
+        render json: {:data=> content, :status=> 200}
     end
     def create
         notification = Notification.new(notification_params)
