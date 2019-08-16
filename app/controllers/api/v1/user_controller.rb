@@ -62,7 +62,7 @@ class Api::V1::UserController < ApplicationController
         params.permit(:email,:name,:surname,:second_name,:iin,:telegram,:city,:street,:house,:apartment,:phone_number)
     end
     def password_params
-        params.permit(:password,:password_confirmation)
+        params.permit(:password,:password_confirmation,:current_password)
     end
     def correct_user
         if current_user = params[:id]
