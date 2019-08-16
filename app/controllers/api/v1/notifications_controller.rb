@@ -9,12 +9,13 @@ class Api::V1::NotificationsController < ApplicationController
     end
     def show_user_cameras
         cam = CameraSetting.where(user_id: params[:user_id])
+        render json: cam
         cam.each do |a|    
             @id=a.id
             @notification = Notification.where(camera_id: @id)
             @content = {notification: @notification}
         end
-        render json: {:data=> @content, :status=> 200}
+        #render json: {:data=> @content, :status=> 200}
     end
     def create
         notification = Notification.new(notification_params)
