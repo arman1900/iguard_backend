@@ -8,8 +8,9 @@ class Api::V1::NotificationsController < ApplicationController
         render json:  notification
     end
     def show_user_cameras
-        CameraSetting.where(user_id: params[:user_id]).all.each do |cam|
-            @id=cam.id
+        cam = CameraSetting.where(user_id: params[:user_id])
+        cam.each do |a|    
+            @id=a.id
             @notification = Notification.where(camera_id: @id)
             @content = {notification: @notification}
         end
