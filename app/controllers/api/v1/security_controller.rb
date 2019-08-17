@@ -14,6 +14,6 @@ class Api::V1::SecurityController < ApplicationController
     end
     private
     def security_params
-        params.permit(:company_name,:email,:phone_number,:link,:extra_info,:location,:telegram)
+        params.permit(:company_name,:email,:phone_number,:link,:extra_info,:location,:telegram,:picture)
     end
 end

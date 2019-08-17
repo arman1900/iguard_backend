@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_123709) do
+ActiveRecord::Schema.define(version: 2019_08_17_193928) do
 
   create_table "camera_settings", force: :cascade do |t|
     t.string "status", default: "Off"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_123709) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
   end
 
   create_table "users", force: :cascade do |t|
