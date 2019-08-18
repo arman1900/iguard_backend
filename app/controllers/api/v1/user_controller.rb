@@ -5,11 +5,10 @@ class Api::V1::UserController < ApplicationController
         render json: user
     end
     def add_securities
-        user = User.find(params[:id])
+        user = User.find(params[:id])   
         params[:security_id].each do |a|
             security = Security.find(a)
             user.securities << security
-            security.users << user
         end 
     end
     def delete
