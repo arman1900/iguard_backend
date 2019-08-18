@@ -8,7 +8,7 @@ class Api::V1::UserController < ApplicationController
         user = User.find(params[:id])   
         params[:security_id].each do |a|
             security = Security.find(a)
-            user.securities << security
+            security.users << user
         end 
     end
     def delete
