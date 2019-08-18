@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get "/:token/user_notifications/:user_id", to:"notifications#show_user_cameras"
       patch "/:token/user_update_password/:id", to: "user#update_password"
       post "/:token/add_securities/:id", to: "user#add_securities"
+      get "/:token/user_securities/:id", to: "securities#user_securities"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
