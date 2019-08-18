@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_17_193928) do
+ActiveRecord::Schema.define(version: 2019_08_18_060934) do
 
   create_table "camera_settings", force: :cascade do |t|
     t.string "status", default: "Off"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_08_17_193928) do
     t.string "telegram"
     t.string "link"
     t.text "extra_info"
-    t.string "location" 
+    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2019_08_17_193928) do
     t.index ["email"], name: "index_users_on_email"
     t.index ["login"], name: "index_users_on_login"
     t.index ["phone_number"], name: "index_users_on_phone_number"
+  end
+
+  create_table "users_securities", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "security_id"
+    t.index ["security_id"], name: "index_users_securities_on_security_id"
+    t.index ["user_id"], name: "index_users_securities_on_user_id"
   end
 
 end
