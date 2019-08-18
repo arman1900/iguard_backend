@@ -17,6 +17,11 @@ class Api::V1::SecurityController < ApplicationController
         @securities = user.securities
         render json: @securities
     end
+    def security_users
+        security = Security.find(params[:id])
+        @users = security.users
+        render json: @users
+    end
     private
     def security_params
         params.permit(:company_name,:email,:phone_number,:link,:extra_info,:location,:telegram,:picture)

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       post "/:token/add_securities/:id", to: "user#add_securities"
       post "/:token/delete_securities/:id", to: "user#delete_securities"
       get "/:token/user_securities/:id", to: "security#user_securities"
+      get "/:token/security_users/:id", to: "security#security_users"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
