@@ -14,8 +14,7 @@ class PictureUploader < CarrierWave::Uploader::Base
     resize_to_fit(50, 50)
   end
   if Rails.env.production?
-    #storage :cloudinary
-     storage :fog
+    storage :cloudinary
   else
     storage :file
   end
