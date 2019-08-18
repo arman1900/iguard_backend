@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   #  before_create :confirmation_token
     cattr_reader :current_password
-    has_many :security
+    has_and_belongs_to_many :securities
     has_many :notifications
     has_many :camera_settings
     has_secure_password

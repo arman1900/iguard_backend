@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_08_17_193928) do
     t.string "telegram"
     t.string "link"
     t.text "extra_info"
-    t.string "location"
+    t.string "location" 
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"

@@ -4,6 +4,14 @@ class Api::V1::UserController < ApplicationController
         user = User.all
         render json: user
     end
+    def add_securities
+        user = User.find(params[:id])
+        params[:content].each do |a|
+            security = Security.find(a)
+            user.securities << security
+            security.users << user
+        end
+    end
     def delete
         begin
             user = User.find(params[:id])
@@ -63,6 +71,9 @@ class Api::V1::UserController < ApplicationController
     end
     def password_params
         params.permit(:password,:password_confirmation,:current_password)
+    end
+    def securities_params
+        params.permit(content:[:security_id])
     end
     def correct_user
         if current_user = params[:id]
