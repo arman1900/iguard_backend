@@ -6,11 +6,11 @@ class Api::V1::UserController < ApplicationController
     end
     def add_securities
         user = User.find(params[:id])
-        params[:content].each do |a|
+        securities_params[:content].each do |a|
             security = Security.find(a)
             user.securities << security
             security.users << user
-        end
+        end 
     end
     def delete
         begin
