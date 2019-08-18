@@ -56,7 +56,7 @@ class Api::V1::CameraSettingsController < ApplicationController
         render json: cam
     end
     def change_iguard_status
-        if status_state == 1 
+        if status_state(params[:user_id]) == 1 
             CameraSetting.where(user_id: params[:user_id]).all.each do |cam|
                 cam.status = "Off"
                 cam.save
@@ -71,7 +71,7 @@ class Api::V1::CameraSettingsController < ApplicationController
         render json: cam 
     end
     def status
-            s = status_state
+            s = status_state(params[:user_id]) 
             render json: s
         
     end
