@@ -13,5 +13,11 @@ class PictureUploader < CarrierWave::Uploader::Base
   version :thumbnail do
     resize_to_fit(50, 50)
   end
+  if Rails.env.production?
+    #storage :cloudinary
+     storage :fog
+  else
+    storage :file
+  end
 
 end
