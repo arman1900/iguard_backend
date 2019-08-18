@@ -18,7 +18,7 @@ class Api::V1::NotificationsController < ApplicationController
         render json: {:data=> content, :status=> 200}
     end
     def create
-        cam = Camera.find(params[:camera_id])
+        cam = CameraSetting.find(params[:camera_id])
         i = cam.user_id
         status = status_state i
         if status == 1
