@@ -5,15 +5,12 @@ class Api::V1::UserController < ApplicationController
         render json: user
     end
     def add_securities
-        user = User.find(params[:id])   
+        @user = User.find(params[:id])   
         params[:security_id].each do |a|
             @security = Security.find(a)
-            @security.users << user
+            @security.users << @user
         end 
-        respond_to do |format|
-            format.html
-            format.json { render :json => user.to_json(:include => :security) }
-          end  
+        render json: @user.to_json(include: [:securities])
     end
     def delete
         begin

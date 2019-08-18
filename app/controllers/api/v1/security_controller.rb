@@ -12,6 +12,7 @@ class Api::V1::SecurityController < ApplicationController
         security = Security.all
         render json: security
     end
+    def show_security_users
     private
     def security_params
         params.permit(:company_name,:email,:phone_number,:link,:extra_info,:location,:telegram,:picture)
