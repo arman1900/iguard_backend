@@ -10,7 +10,10 @@ class Api::V1::UserController < ApplicationController
             @security = Security.find(a)
             @security.users << user
         end 
-        render json: user, include: security 
+        respond_to do |format|
+            format.html
+            format.json { render :json => user.to_json(:include => :security) }
+          end  
     end
     def delete
         begin
