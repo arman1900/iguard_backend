@@ -18,13 +18,17 @@ class Api::V1::NotificationsController < ApplicationController
         render json: {:data=> content, :status=> 200}
     end
     def create
-        notification = Notification.new(notification_params)
-        if notification.save
-            ActionCable.server.broadcast 'notifications',
-                notification: notification.picture
-            head :ok
+        if status_state == 1
+            notification = Notification.new(notification_params)
+            if notification.save
+                ActionCable.server.broadcast 'notifications',
+                    notification: notification.picture
+                head :ok
+            else
+                render json:{errors: notification.errors.full_messages},status: :error
+            end
         else
-            render json:{errors: notification.errors.full_messages},status: :error
+            render json: "Iguard isn't working now"
         end
     end
     private
