@@ -7,8 +7,8 @@ class Api::V1::UserController < ApplicationController
     def add_securities
         user = User.find(params[:id])   
         params[:security_id].each do |a|
-            security = Security.find(a)
-            security.users << user
+            @security = Security.find(a)
+            @security.users << user
         end 
         render json: user, include: security 
     end
