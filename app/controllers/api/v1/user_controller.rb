@@ -12,6 +12,14 @@ class Api::V1::UserController < ApplicationController
         end 
         render json: @user.to_json(include: [:securities])
     end
+    def delete_securities
+        @user = User.find(params[:id])   
+        params[:security_id].each do |a|
+            @security = Security.find(a)
+            @user.securities.delete(@security)
+        end 
+        render json: @user.to_json(include: [:securities])
+    end
     def delete
         begin
             user = User.find(params[:id])
