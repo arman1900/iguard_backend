@@ -6,7 +6,7 @@ class Api::V1::UserController < ApplicationController
     end
     def add_securities
         user = User.find(params[:id])
-        securities_params[:content].each do |a|
+        params[:content].each do |a|
             security = Security.find(a)
             user.securities << security
             security.users << user
@@ -71,9 +71,6 @@ class Api::V1::UserController < ApplicationController
     end
     def password_params
         params.permit(:password,:password_confirmation,:current_password)
-    end
-    def securities_params
-        params.permit(content:[:security_id])
     end
     def correct_user
         if current_user = params[:id]
