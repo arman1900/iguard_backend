@@ -10,7 +10,7 @@ class Api::V1::UserController < ApplicationController
             security = Security.find(a)
             security.users << user
         end 
-        render json: user
+        render json: user, include:{security} 
     end
     def delete
         begin
