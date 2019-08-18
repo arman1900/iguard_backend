@@ -19,7 +19,9 @@ class Api::V1::NotificationsController < ApplicationController
     end
     def create
         cam = Camera.find(params[:camera_id]
-        if status_state cam.user_id == 1
+        i = cam.user_id
+        status = status_state i
+        if status == 1
             notification = Notification.new(notification_params)
             if notification.save
                 ActionCable.server.broadcast 'notifications',
