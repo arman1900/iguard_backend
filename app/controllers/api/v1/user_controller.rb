@@ -10,6 +10,7 @@ class Api::V1::UserController < ApplicationController
             security = Security.find(a)
             security.users << user
         end 
+        render json: user
     end
     def delete
         begin
