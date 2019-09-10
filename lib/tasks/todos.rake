@@ -13,5 +13,6 @@ namespace :todos do
         end
       end
     end
+    puts 'done.'
   end
 end
